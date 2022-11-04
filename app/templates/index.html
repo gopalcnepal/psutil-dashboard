@@ -1,15 +1,55 @@
 {% extends "base.html" %}
 
-{% headblock %} 
+{% block head %} 
     <title> PSUTIL-DASHBOARD </title>
 {% endblock %}
 
 {% block body %}
-    <div>
-        <h1 class="h2">Dashboard</h1>
+    <div class="col-lg-4">
+        <div class="card bg-dark text-white">
+            <div class="card-body">
+                <h5 class="card-title">System Information</h5>
+                <p class="card-text">
+                    <table class="table table-hover text-left table-dark">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td scope="row"> Hostname: </td>
+                                <td> {{ context.platform_info['node_name'] }} </td>
+                            </tr>
+                            <tr>
+                                <td scope="row"> Operating System: </td>
+                                <td> {{ context.platform_info['os_name'] }} </td>
+                            </tr>
+                            <tr>
+                                <td scope="row"> System Name: </td>
+                                <td> {{ context.platform_info['system_name'] }} </td>
+                            </tr>
+                            <tr>
+                                <td scope="row"> Release: </td>
+                                <td> {{ context.platform_info['release_version'] }} </td>
+                            </tr>
+                            <tr>
+                                <td scope="row"> Architecture: </td>
+                                <td> {{ context.platform_info['architecture'] }} </td>
+                            </tr>
+                            <tr>
+                                <td scope="row"> Processor Type: </td>
+                                <td> {{ context.platform_info['processor_type'] }} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </p>
+            </div>
+        </div>
     </div>
 {% endblock %}
 
 {% block script %} 
-
+<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
 {% endblock %}
