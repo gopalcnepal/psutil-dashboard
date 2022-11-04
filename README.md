@@ -177,6 +177,7 @@ Following resources have helped me get inspired and ideas to build this project.
 * [psdash](https://github.com/Jahaja/psdash)
 * [Bootstrap Template](https://getbootstrap.com/docs/5.2/examples/dashboard/)
 * [Feather Icons](https://feathericons.com/)
+* [Readme Template](https://github.com/othneildrew/Best-README-Template)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
