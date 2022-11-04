@@ -1,5 +1,6 @@
 from app import app
+from flask import render_template, url_for
 
 @app.route('/')
 def index():
-    return "<h1> PSUTIL-Dashboard </h1>"
+    return render_template("index.html")
