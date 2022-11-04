@@ -31,7 +31,6 @@
 <br />
 <div align="center">
   <a href="https://github.com/gopalcnepal/psutil-dashboard">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">PSUTIL-Dashboard</h3>
@@ -84,6 +83,8 @@
 ## About The Project
 
 This is a fun project that I have started to learn Flask. In this project I will combine the power of psutil module to extrct the system information and display in the dashboard.
+
+This Project is test only on macOS Monterey. However the aim of project is to make it compaitable to run on any OS.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
