@@ -61,9 +61,15 @@
                 <h5>Power Information</h5>
                 <h5>
                     {% if context.power_info['power_source'] == 'Battery Power' %}
-                        <i class="fa-solid fa-battery-three-quarters"></i>
+                        {% if context.power_info['percent'] <= 25 %}
+                            <i class="fa-solid fa-battery-quarter text-danger"></i>
+                        {% elif (context.power_info['percent'] >=25 and context.power_info['percent'] <= 50) %}
+                            <i class="fa-solid fa-battery-half"></i>
+                        {% else %}
+                            <i class="fa-solid fa-battery-three-quarters text-success"></i>
+                        {% endif %}
                     {% else %}
-                        <i class="fa-solid fa-plug-circle-bolt"></i>
+                        <i class="fa-solid fa-plug-circle-bolt text-success"></i>
                     {% endif %}
                 </h5>
             </div>

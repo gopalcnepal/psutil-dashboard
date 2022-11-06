@@ -30,10 +30,10 @@ def get_power_info():
     if power_data.secsleft in (psutil.POWER_TIME_UNKNOWN, psutil.POWER_TIME_UNLIMITED):
         time_remaining = 'Calculating'
     else:
-        time_remaining = str(round(psutil.sensors_battery().secsleft / 3600, 2)) + 'hrs '
+        time_remaining = str(round(psutil.sensors_battery().secsleft / 3600, 2)) + ' hrs'
 
     power_info = {
-        'percent': power_data.percent,
+        'percent': int(power_data.percent),
         'time_remaining': time_remaining,
         'power_source': 'AC Power' if power_data.power_plugged  else 'Battery Power'
     }
