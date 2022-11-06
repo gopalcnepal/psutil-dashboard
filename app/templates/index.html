@@ -8,16 +8,30 @@
     <!-- System Information -->
     <div class="col-lg-4">
         <div class="card bg-dark text-white">
-            <h5 class="card-header">System Information</h5>
+            <div class="d-flex card-header justify-content-between">
+                <h5>System Information</h5>
+                <h5>
+                    {% if context.platform_info['os_name'] != 'unknown' %}
+                        <i class="fa-brands fa-{{context.platform_info['os_name']}}"></i>
+                    {% else %}
+                        <i class="fa-brands fa-question"></i>
+                    {% endif %}
+                </h5>
+            </div>
             <div class="card-body">
-                <table class="table table-hover text-left table-dark">
+                <table class="table table-hover text-left table-dark text-muted">
                     <tr>
                         <td scope="row"> Hostname: </td>
                         <td> {{ context.platform_info['node_name'] }} </td>
                     </tr>
                     <tr>
                         <td scope="row"> Operating System: </td>
-                        <td> {{ context.platform_info['os_name'] }} </td>
+                        {% if context.platform_info['os_name'] == 'apple' %}
+                            <td> macOS </td>
+                        {% else %}
+                            <td> {{ context.platform_info['os_name']|title }} </td>
+                        {% endif %}
+                        
                     </tr>
                     <tr>
                         <td scope="row"> System Name: </td>
@@ -43,9 +57,18 @@
     <!-- Power Information -->
     <div class="col-lg-4">
         <div class="card bg-dark text-white">
-            <h5 class="card-header">Power Information</h5>
+            <div class="d-flex card-header justify-content-between">
+                <h5>Power Information</h5>
+                <h5>
+                    {% if context.power_info['power_source'] == 'Battery Power' %}
+                        <i class="fa-solid fa-battery-three-quarters"></i>
+                    {% else %}
+                        <i class="fa-solid fa-plug-circle-bolt"></i>
+                    {% endif %}
+                </h5>
+            </div>
             <div class="card-body">
-                <table class="table table-hover text-left table-dark">
+                <table class="table table-hover text-left table-dark text-muted">
                     <tr>
                         <td scope="row"> Percentage: </td>
                         <td> {{ context.power_info['percent'] }} % </td>

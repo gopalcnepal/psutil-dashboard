@@ -3,9 +3,17 @@ import psutil
 
 def get_platform_info():
     uname = platform.uname()
+    if psutil.MACOS:
+        os_name = 'apple'
+    elif psutil.WINDOWS:
+        os_name = 'windows'
+    elif psutil.LINUX:
+        os_name = 'linux'
+    else:
+        os_name = 'Unknown'
 
     platform_info = {
-        'os_name': platform.platform().split('-')[0],
+        'os_name': os_name,
         'node_name': uname.node.split('.')[0],
         'system_name': uname.system,
         'release_version': uname.release,
