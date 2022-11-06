@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block body %}
+    <!-- System Information -->
     <div class="col-lg-4">
         <div class="card bg-dark text-white">
             <h5 class="card-header">System Information</h5>
@@ -33,6 +34,29 @@
                     <tr>
                         <td scope="row"> Processor Type: </td>
                         <td> {{ context.platform_info['processor_type'] }} </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Power Information -->
+    <div class="col-lg-4">
+        <div class="card bg-dark text-white">
+            <h5 class="card-header">Power Information</h5>
+            <div class="card-body">
+                <table class="table table-hover text-left table-dark">
+                    <tr>
+                        <td scope="row"> Percentage: </td>
+                        <td> {{ context.power_info['percent'] }} % </td>
+                    </tr>
+                    <tr>
+                        <td scope="row"> Time Remaining: </td>
+                        <td> {{ context.power_info['time_remaining'] }} </td>
+                    </tr>
+                    <tr>
+                        <td scope="row"> Source: </td>
+                        <td> {{ context.power_info['power_source'] }} </td>
                     </tr>
                 </table>
             </div>
