@@ -1,5 +1,6 @@
 import platform
 import psutil
+from datetime import datetime
 
 def get_platform_info():
     uname = platform.uname()
@@ -39,3 +40,16 @@ def get_power_info():
     }
     
     return power_info
+
+def get_user_info():
+    user_data = psutil.users()
+    user_info = {}
+    for count,user in enumerate(user_data):
+        user_info[count] = {
+            'name': user.name, 
+            'terminal': user.terminal, 
+            'host': user.host, 
+            'started': datetime.fromtimestamp(user.started),
+            'pid':user.pid,
+        }
+    return user_info

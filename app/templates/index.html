@@ -55,7 +55,7 @@
     </div>
 
     <!-- Power Information -->
-    <div class="col-lg-4">
+    <div class="col-lg-3">
         <div class="card bg-dark text-white">
             <div class="d-flex card-header justify-content-between">
                 <h5>Power Information</h5>
@@ -87,6 +87,42 @@
                         <td scope="row"> Source: </td>
                         <td> {{ context.power_info['power_source'] }} </td>
                     </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Information -->
+    <div class="col-lg-5">
+        <div class="card bg-dark text-white">
+            <div class="d-flex card-header justify-content-between">
+                <h5>User Information</h5>
+                <h5>
+                    <i class="fa-solid fa-user"></i>
+                </h5>
+            </div>
+            <div class="card-body table-responsive">
+                <table class="table table-hover text-left table-dark text-muted">
+                    <thead>
+                        <tr>
+                            <th scope="col">Username</th>
+                            <th scope="col">Terminal</th>
+                            <th scope="col">Host</th>
+                            <th scope="col">Started</th>
+                            <th scope="col">PID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in context.user_info.values() %}
+                        <tr>
+                            <td scope="row"> {{ user.name }} </td>
+                            <td> {{ user.terminal }} </td>
+                            <td> {{ user.host }} </td>
+                            <td> {{ user.started.strftime('%d-%m-%y %H:%M') }} </td>
+                            <td> {{ user.pid }} </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
                 </table>
             </div>
         </div>
