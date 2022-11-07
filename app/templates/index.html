@@ -5,128 +5,170 @@
 {% endblock %}
 
 {% block body %}
-    <!-- System Information -->
-    <div class="col-lg-4">
-        <div class="card bg-dark text-white">
-            <div class="d-flex card-header justify-content-between">
-                <h5>System Information</h5>
-                <h5>
-                    {% if context.platform_info['os_name'] != 'unknown' %}
-                        <i class="fa-brands fa-{{context.platform_info['os_name']}}"></i>
-                    {% else %}
-                        <i class="fa-brands fa-question"></i>
-                    {% endif %}
-                </h5>
-            </div>
-            <div class="card-body">
-                <table class="table table-hover text-left table-dark text-muted">
-                    <tr>
-                        <td scope="row"> Hostname: </td>
-                        <td> {{ context.platform_info['node_name'] }} </td>
-                    </tr>
-                    <tr>
-                        <td scope="row"> Operating System: </td>
-                        {% if context.platform_info['os_name'] == 'apple' %}
-                            <td> macOS </td>
-                        {% else %}
-                            <td> {{ context.platform_info['os_name']|title }} </td>
-                        {% endif %}
-                        
-                    </tr>
-                    <tr>
-                        <td scope="row"> System Name: </td>
-                        <td> {{ context.platform_info['system_name'] }} </td>
-                    </tr>
-                    <tr>
-                        <td scope="row"> Release: </td>
-                        <td> {{ context.platform_info['release_version'] }} </td>
-                    </tr>
-                    <tr>
-                        <td scope="row"> Architecture: </td>
-                        <td> {{ context.platform_info['architecture'] }} </td>
-                    </tr>
-                    <tr>
-                        <td scope="row"> Processor Type: </td>
-                        <td> {{ context.platform_info['processor_type'] }} </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
 
-    <!-- Power Information -->
-    <div class="col-lg-3">
-        <div class="card bg-dark text-white">
-            <div class="d-flex card-header justify-content-between">
-                <h5>Power Information</h5>
-                <h5>
-                    {% if context.power_info['power_source'] == 'Battery Power' %}
-                        {% if context.power_info['percent'] <= 25 %}
-                            <i class="fa-solid fa-battery-quarter text-danger"></i>
-                        {% elif (context.power_info['percent'] >=25 and context.power_info['percent'] <= 50) %}
-                            <i class="fa-solid fa-battery-half"></i>
-                        {% else %}
-                            <i class="fa-solid fa-battery-three-quarters text-success"></i>
-                        {% endif %}
-                    {% else %}
-                        <i class="fa-solid fa-plug-circle-bolt text-success"></i>
-                    {% endif %}
-                </h5>
-            </div>
-            <div class="card-body">
-                <table class="table table-hover text-left table-dark text-muted">
-                    <tr>
-                        <td scope="row"> Percentage: </td>
-                        <td> {{ context.power_info['percent'] }} % </td>
-                    </tr>
-                    <tr>
-                        <td scope="row"> Time Remaining: </td>
-                        <td> {{ context.power_info['time_remaining'] }} </td>
-                    </tr>
-                    <tr>
-                        <td scope="row"> Source: </td>
-                        <td> {{ context.power_info['power_source'] }} </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
+    <!-- Main Contents -->
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-top pt-3 pb-2 mb-3">
 
-    <!-- User Information -->
-    <div class="col-lg-5">
-        <div class="card bg-dark text-white">
-            <div class="d-flex card-header justify-content-between">
-                <h5>User Information</h5>
-                <h5>
-                    <i class="fa-solid fa-user"></i>
-                </h5>
+            <!-- System Information -->
+            <div class="col-lg-4">
+                <div class="card bg-dark text-white">
+                    <div class="d-flex card-header justify-content-between">
+                        <h5>System Information</h5>
+                        <h5>
+                            {% if context.platform_info['os_name'] != 'unknown' %}
+                                <i class="fa-brands fa-{{context.platform_info['os_name']}}"></i>
+                            {% else %}
+                                <i class="fa-brands fa-question"></i>
+                            {% endif %}
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-hover text-left table-dark text-muted">
+                            <tr>
+                                <td scope="row"> Hostname: </td>
+                                <td> {{ context.platform_info['node_name'] }} </td>
+                            </tr>
+                            <tr>
+                                <td scope="row"> Operating System: </td>
+                                {% if context.platform_info['os_name'] == 'apple' %}
+                                    <td> macOS </td>
+                                {% else %}
+                                    <td> {{ context.platform_info['os_name']|title }} </td>
+                                {% endif %}
+                                
+                            </tr>
+                            <tr>
+                                <td scope="row"> System Name: </td>
+                                <td> {{ context.platform_info['system_name'] }} </td>
+                            </tr>
+                            <tr>
+                                <td scope="row"> Release: </td>
+                                <td> {{ context.platform_info['release_version'] }} </td>
+                            </tr>
+                            <tr>
+                                <td scope="row"> Architecture: </td>
+                                <td> {{ context.platform_info['architecture'] }} </td>
+                            </tr>
+                            <tr>
+                                <td scope="row"> Processor Type: </td>
+                                <td> {{ context.platform_info['processor_type'] }} </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
-            <div class="card-body table-responsive">
-                <table class="table table-hover text-left table-dark text-muted">
-                    <thead>
-                        <tr>
-                            <th scope="col">Username</th>
-                            <th scope="col">Terminal</th>
-                            <th scope="col">Host</th>
-                            <th scope="col">Started</th>
-                            <th scope="col">PID</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for user in context.user_info.values() %}
-                        <tr>
-                            <td scope="row"> {{ user.name }} </td>
-                            <td> {{ user.terminal }} </td>
-                            <td> {{ user.host }} </td>
-                            <td> {{ user.started.strftime('%d-%m-%y %H:%M') }} </td>
-                            <td> {{ user.pid }} </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+
+            <!-- Power Information -->
+            <div class="col-lg-3">
+                <div class="card bg-dark text-white">
+                    <div class="d-flex card-header justify-content-between">
+                        <h5>Power Information</h5>
+                        <h5>
+                            {% if context.power_info['power_source'] == 'Battery Power' %}
+                                {% if context.power_info['percent'] <= 25 %}
+                                    <i class="fa-solid fa-battery-quarter text-danger"></i>
+                                {% elif (context.power_info['percent'] >=25 and context.power_info['percent'] <= 50) %}
+                                    <i class="fa-solid fa-battery-half"></i>
+                                {% else %}
+                                    <i class="fa-solid fa-battery-three-quarters text-success"></i>
+                                {% endif %}
+                            {% else %}
+                                <i class="fa-solid fa-plug-circle-bolt text-success"></i>
+                            {% endif %}
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-hover text-left table-dark text-muted">
+                            <tr>
+                                <td scope="row"> Percentage: </td>
+                                <td> {{ context.power_info['percent'] }} % </td>
+                            </tr>
+                            <tr>
+                                <td scope="row"> Time Remaining: </td>
+                                <td> {{ context.power_info['time_remaining'] }} </td>
+                            </tr>
+                            <tr>
+                                <td scope="row"> Source: </td>
+                                <td> {{ context.power_info['power_source'] }} </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Information -->
+            <div class="col-lg-5">
+                <div class="card bg-dark text-white">
+                    <div class="d-flex card-header justify-content-between">
+                        <h5>User Information</h5>
+                        <h5>
+                            <i class="fa-solid fa-user text-primary"></i>
+                        </h5>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table table-hover text-left table-dark text-muted">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Username</th>
+                                    <th scope="col">Terminal</th>
+                                    <th scope="col">Host</th>
+                                    <th scope="col">Started</th>
+                                    <th scope="col">PID</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for user in context.user_info.values() %}
+                                <tr>
+                                    <td scope="row"> {{ user.name }} </td>
+                                    <td> {{ user.terminal }} </td>
+                                    <td> {{ user.host }} </td>
+                                    <td> {{ user.started.strftime('%d-%m-%y %H:%M') }} </td>
+                                    <td> {{ user.pid }} </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-top pt-3 pb-2 mb-3">
+            <!-- Memory Information -->
+            <div class="col-lg-4">
+                <div class="card bg-dark text-white">
+                    <div class="d-flex card-header justify-content-between">
+                        <h5>Memory Information</h5>
+                        <h5>
+                            <i class="fa-solid fa-memory text-warning"></i>
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-hover text-left table-dark text-muted">
+                            <tr>
+                                <td scope="row"> Total RAM: </td>
+                                <td> {{ context.memory_info['svmem_total'] }} </td>
+                            </tr>
+                            <tr>
+                                <td scope="row"> Used: </td>
+                                <td> {{ context.memory_info['svem_percent'] }}% </td>
+                                
+                            </tr>
+                            <tr>
+                                <td scope="row"> Total Swap: </td>
+                                <td> {{ context.memory_info['smem_total'] }} </td>
+                            </tr>
+                            <tr>
+                                <td scope="row"> Used: </td>
+                                <td> {{ context.memory_info['smem_percent'] }}% </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 {% endblock %}
 
 {% block script %} 

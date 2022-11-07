@@ -60,12 +60,8 @@
                     </div>
                 </nav>
 
-                <!-- Main Contents -->
-                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-top pt-3 pb-2 mb-3">
-                        {% block body %} {% endblock %}
-                    </div>
-                </main>
+                {% block body %} {% endblock %}
+                
             </div>
         </div>
         {% block script %} {% endblock %}

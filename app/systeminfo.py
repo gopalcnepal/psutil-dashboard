@@ -1,6 +1,7 @@
 import platform
 import psutil
 from datetime import datetime
+from psutil._common import bytes2human
 
 def get_platform_info():
     uname = platform.uname()
@@ -44,6 +45,7 @@ def get_power_info():
 def get_user_info():
     user_data = psutil.users()
     user_info = {}
+
     for count,user in enumerate(user_data):
         user_info[count] = {
             'name': user.name, 
@@ -52,4 +54,18 @@ def get_user_info():
             'started': datetime.fromtimestamp(user.started),
             'pid':user.pid,
         }
+
     return user_info
+
+def get_memory_info():
+    vmemory_data = psutil.virtual_memory()
+    smemory_data = psutil.swap_memory()
+
+    memory_data = {
+        'svmem_total': bytes2human(vmemory_data.total),
+        'svem_percent': vmemory_data.percent,
+        'smem_total': bytes2human(smemory_data.total),
+        'smem_percent': smemory_data.percent
+    }
+    
+    return memory_data
