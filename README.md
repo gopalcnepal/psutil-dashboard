@@ -82,6 +82,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+[![PSUTIL Dashboard][product-screenshot]](https://github.com/gopalcnepal/psutil-dashboard)
+
 This is a fun project that I have started to learn Flask. In this project I will combine the power of psutil module to extrct the system information and display in the dashboard.
 
 This Project is test only on macOS Monterey. However the aim of project is to make it compaitable to run on any OS.
@@ -186,6 +188,7 @@ Following resources have helped me get inspired and ideas to build this project.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[product-screenshot]: screenshot/psutil_dashboard.png
 [contributors-shield]: https://img.shields.io/github/contributors/gopalcnepal/psutil-dashboard.svg?style=for-the-badge
 [contributors-url]: https://github.com/gopalcnepal/psutil-dashboard/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/gopalcnepal/psutil-dashboard.svg?style=for-the-badge
