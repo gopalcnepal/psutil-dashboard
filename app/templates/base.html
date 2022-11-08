@@ -8,13 +8,14 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
         {% block head %} {% endblock %}
     </head>
-    <body class="bg-black">
+    <body class="bg-dark">
         <!-- Top Navigation Bar-->
         <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
             <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">PSUTIL-DASHBOARD</a>
             <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            {% block pagetitle %} {% endblock %}
             </div>
         </header>
 
@@ -23,43 +24,47 @@
             <div class="row">
 
                 <!-- Side Navigation Bar-->
-                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-                    <div class="position-sticky pt-3 sidebar-sticky">
-                        <ul class="nav flex-column">
+                <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark col-md-3 col-lg-2 d-md-block sidebar collapse position-sticky pt-3 sidebar-sticky">
+                    <div class="nav h-100 flex-column mb-auto">
+                        <ul class="nav nav-pills flex-column mb-auto">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">
+                                <a href="#" class="nav-link active text-white" aria-current="page">
                                     <i class="fa-solid fa-house"></i>
-                                    Dashboard
+                                    Overview
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
+                            <li>
+                                <a href="#" class="nav-link text-white">
                                     <i class="fa-solid fa-microchip"></i>
                                     Processes
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
+                            <li>
+                                <a href="#" class="nav-link text-white">
                                     <i class="fa-solid fa-network-wired"></i>
                                     Network
                                 </a>
                             </li>
-                            <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fa-solid fa-hard-drive"></i>
-                                Disks
-                            </a>
+                            <li>
+                                <a href="#" class="nav-link text-white">
+                                    <i class="fa-solid fa-hard-drive"></i>
+                                    Disks
+                                </a>
                             </li>
-                            <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fa-solid fa-file-lines"></i>
-                                Logs
-                            </a>
+                            <li>
+                                <a href="#" class="nav-link text-white">
+                                    <i class="fa-solid fa-file-lines"></i>
+                                    Logs
+                                </a>
                             </li>
                         </ul>
+                        <hr>
+                        <a href="https://github.com/gopalcnepal/psutil-dashboard" class="nav-link text-primary">
+                            View on Github
+                        </a>
                     </div>
-                </nav>
-
+                </div>
+                
                 {% block body %} {% endblock %}
                 
             </div>

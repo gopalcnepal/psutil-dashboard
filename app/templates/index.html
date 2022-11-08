@@ -4,17 +4,25 @@
     <title> PSUTIL-DASHBOARD </title>
 {% endblock %}
 
+{% block pagetitle %} 
+<div class="text-center w-100">
+    <h3 class="text-white h3">Overview</h3>
+</div>
+
+{% endblock %}
+
 {% block body %}
 
     <!-- Main Contents -->
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-top pt-3 pb-2 mb-3">
+
+        <div class="row" data-masonry='{"percentPosition": true }' style="padding-top: 10px;">
 
             <!-- System Information -->
-            <div class="col-lg-4">
-                <div class="card bg-dark text-white">
+            <div class="col-sm-6 col-lg-4 mb-4">
+                <div class="card h-100 bg-dark text-white">
                     <div class="d-flex card-header justify-content-between">
-                        <h5>System Information</h5>
+                        <h5>System</h5>
                         <h5>
                             {% if context.platform_info['os_name'] != 'unknown' %}
                                 <i class="fa-brands fa-{{context.platform_info['os_name']}}"></i>
@@ -60,10 +68,10 @@
             </div>
 
             <!-- Power Information -->
-            <div class="col-lg-3">
-                <div class="card bg-dark text-white">
+            <div class="col-sm-6 col-lg-4 mb-4">
+                <div class="card h-100 bg-dark text-white">
                     <div class="d-flex card-header justify-content-between">
-                        <h5>Power Information</h5>
+                        <h5>Power</h5>
                         <h5>
                             {% if context.power_info['power_source'] == 'Battery Power' %}
                                 {% if context.power_info['percent'] <= 25 %}
@@ -98,10 +106,10 @@
             </div>
 
             <!-- User Information -->
-            <div class="col-lg-5">
-                <div class="card bg-dark text-white">
+            <div class="col-sm-6 col-lg-4 mb-4">
+                <div class="card h-100 bg-dark text-white">
                     <div class="d-flex card-header justify-content-between">
-                        <h5>User Information</h5>
+                        <h5>User</h5>
                         <h5>
                             <i class="fa-solid fa-user text-primary"></i>
                         </h5>
@@ -132,14 +140,12 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-top pt-3 pb-2 mb-3">
             <!-- Memory Information -->
             <div class="col-lg-4">
-                <div class="card bg-dark text-white">
+                <div class="card h-100 bg-dark text-white">
                     <div class="d-flex card-header justify-content-between">
-                        <h5>Memory Information</h5>
+                        <h5>Memory</h5>
                         <h5>
                             <i class="fa-solid fa-memory text-warning"></i>
                         </h5>
@@ -167,6 +173,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </main>
 {% endblock %}
