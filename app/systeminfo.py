@@ -69,3 +69,17 @@ def get_memory_info():
     }
     
     return memory_data
+
+def get_disks_info():
+    disk_data = {}
+    disk_partitions = psutil.disk_partitions(all=False)
+    for counter,partition in enumerate(disk_partitions):
+        usage_data = psutil.disk_usage(partition.mountpoint)
+        disk_data[counter] = {
+            'device': partition.device,
+            'mounted': partition.mountpoint,
+            'total': bytes2human(usage_data.total),
+            'used':bytes2human(usage_data.used),
+            'free':bytes2human(usage_data.free),
+        }
+    return disk_data
