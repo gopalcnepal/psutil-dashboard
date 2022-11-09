@@ -5,6 +5,7 @@ from psutil._common import bytes2human
 
 def get_platform_info():
     uname = platform.uname()
+    boot_time = psutil.boot_time()
     if psutil.MACOS:
         os_name = 'apple'
     elif psutil.WINDOWS:
@@ -20,7 +21,8 @@ def get_platform_info():
         'system_name': uname.system,
         'release_version': uname.release,
         'architecture': platform.architecture()[0],
-        'processor_type': platform.processor()
+        'processor_type': platform.processor(),
+        'boot_time': datetime.now() - datetime.fromtimestamp(boot_time),
 
     }
 
@@ -83,3 +85,22 @@ def get_disks_info():
             'free':bytes2human(usage_data.free),
         }
     return disk_data
+
+def get_network_info():
+    network_data = {}
+    if_addrs = psutil.net_if_addrs()
+    io_counter = psutil.net_io_counters(pernic=True)
+
+    for interface_name, interface_addresses in if_addrs.items():
+        for address in interface_addresses:
+            if int(address.family) == 2:
+                if interface_name in io_counter:
+                    io = io_counter[interface_name]
+                    network_data[interface_name] = {
+                        'name': interface_name,
+                        'ip_address': address.address,
+                        'sent_bytes': bytes2human(io.bytes_sent),
+                        'received_bytes': bytes2human(io.bytes_recv),
+                    }
+
+    return network_data

@@ -7,6 +7,20 @@
 {% block pagetitle %} 
 <div class="text-center w-100">
     <h3 class="text-white h3">Overview</h3>
+    <p class="text-small text-muted">
+
+        {% if context.platform_info['os_name'] != 'unknown' %}
+            <i class="fa-brands fa-{{context.platform_info['os_name']}}"></i>
+        {% else %}
+            <i class="fa-brands fa-question"></i>
+        {% endif %}
+
+        Hostname: {{ context.platform_info['node_name'] }},
+        OS: {% if context.platform_info['os_name'] == 'apple' %} macOS {% else %} {{ context.platform_info['os_name']|title }} {% endif %},
+        System: {{ context.platform_info['system_name'] }} v{{ context.platform_info['release_version'] }},
+        Architecture: {{ context.platform_info['architecture'] }} {{ context.platform_info['processor_type'] }},
+        Up Time: {{ context.platform_info['boot_time'] }}
+    </p>
 </div>
 
 {% endblock %}
@@ -16,7 +30,7 @@
     <!-- Main Contents -->
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
-        <div class="row" data-masonry='{"percentPosition": true }' style="padding-top: 10px;">
+        <div class="row"' style="padding-top: 10px;">
 
             <!-- Memory Information -->
             <div class="col-sm-6 col-lg-3 mb-4">
@@ -125,55 +139,6 @@
                 </div>
             </div>
 
-            <!-- System Information -->
-            <div class="col-sm-6 col-lg-4 mb-4">
-                <div class="card h-100 bg-dark text-white">
-                    <div class="d-flex card-header justify-content-between">
-                        <h5>System</h5>
-                        <h5>
-                            {% if context.platform_info['os_name'] != 'unknown' %}
-                                <i class="fa-brands fa-{{context.platform_info['os_name']}}"></i>
-                            {% else %}
-                                <i class="fa-brands fa-question"></i>
-                            {% endif %}
-                        </h5>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-hover text-left table-dark text-muted">
-                            <tr>
-                                <td scope="row"> Hostname: </td>
-                                <td> {{ context.platform_info['node_name'] }} </td>
-                            </tr>
-                            <tr>
-                                <td scope="row"> Operating System: </td>
-                                {% if context.platform_info['os_name'] == 'apple' %}
-                                    <td> macOS </td>
-                                {% else %}
-                                    <td> {{ context.platform_info['os_name']|title }} </td>
-                                {% endif %}
-                                
-                            </tr>
-                            <tr>
-                                <td scope="row"> System Name: </td>
-                                <td> {{ context.platform_info['system_name'] }} </td>
-                            </tr>
-                            <tr>
-                                <td scope="row"> Release: </td>
-                                <td> {{ context.platform_info['release_version'] }} </td>
-                            </tr>
-                            <tr>
-                                <td scope="row"> Architecture: </td>
-                                <td> {{ context.platform_info['architecture'] }} </td>
-                            </tr>
-                            <tr>
-                                <td scope="row"> Processor Type: </td>
-                                <td> {{ context.platform_info['processor_type'] }} </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
             <!-- Disks Information -->
             <div class="col-sm-12 col-lg-6 mb-4">
                 <div class="card h-100 bg-dark text-white">
@@ -202,6 +167,40 @@
                                     <td> {{ disk.total }} </td>
                                     <td> {{ disk.used }} </td>
                                     <td> {{ disk.free }} </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Network Information -->
+            <div class="col-sm-12 col-lg-6 mb-4">
+                <div class="card h-100 bg-dark text-white">
+                    <div class="d-flex card-header justify-content-between">
+                        <h5>Network</h5>
+                        <h5>
+                            <i class="fa-solid fa-network-wired text-danger"></i>
+                        </h5>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table table-hover text-left table-dark text-muted">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Interface</th>
+                                    <th scope="col">IP</th>
+                                    <th scope="col">Sent Bytes</th>
+                                    <th scope="col">Received Bytes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for nic in context.network_info.values() %}
+                                <tr>
+                                    <td scope="row"> {{ nic.name }} </td>
+                                    <td> {{ nic.ip_address }} </td>
+                                    <td> {{ nic.sent_bytes }} </td>
+                                    <td> {{ nic.received_bytes }} </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
