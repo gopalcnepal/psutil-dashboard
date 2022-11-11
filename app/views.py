@@ -14,3 +14,10 @@ def index():
     }
 
     return render_template("index.html", context=context)
+
+@app.route('/processes')
+def processes():
+    context = {
+        'platform_info': get_platform_info(),
+    }
+    return render_template("processes.html", context=context)

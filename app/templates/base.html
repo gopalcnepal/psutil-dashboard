@@ -28,13 +28,13 @@
                     <div class="nav h-100 flex-column mb-auto">
                         <ul class="nav nav-pills flex-column mb-auto">
                             <li class="nav-item">
-                                <a href="#" class="nav-link active text-white" aria-current="page">
+                                <a href="{{ url_for('index') }}" class="nav-link text-white {% if request.path == '/' %} active {% endif %}" aria-current="page">
                                     <i class="fa-solid fa-house"></i>
                                     Overview
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link text-white">
+                                <a href="{{ url_for('processes') }}" class="nav-link text-white {% if request.path == '/processes' %} active {% endif %}">
                                     <i class="fa-solid fa-microchip"></i>
                                     Processes
                                 </a>

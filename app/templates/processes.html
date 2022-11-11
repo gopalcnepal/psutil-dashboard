@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block head %} 
+    <title> PSUTIL-DASHBOARD </title>
+{% endblock %}
+
+{% block pagetitle %} 
+<div class="text-center w-100">
+    <h3 class="text-white h3">Processes</h3>
+    <p class="text-small text-muted">
+
+        {% if context.platform_info['os_name'] != 'unknown' %}
+            <i class="fa-brands fa-{{context.platform_info['os_name']}}"></i>
+        {% else %}
+            <i class="fa-brands fa-question"></i>
+        {% endif %}
+
+        Hostname: {{ context.platform_info['node_name'] }},
+        OS: {% if context.platform_info['os_name'] == 'apple' %} macOS {% else %} {{ context.platform_info['os_name']|title }} {% endif %},
+        System: {{ context.platform_info['system_name'] }} v{{ context.platform_info['release_version'] }},
+        Architecture: {{ context.platform_info['architecture'] }} {{ context.platform_info['processor_type'] }},
+        Up Time: {{ context.platform_info['boot_time'] }}
+    </p>
+</div>
+
+{% endblock %}
+
+{% block body %}
+
+    <!-- Main Contents -->
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+        <div class="row"' style="padding-top: 10px;">
+
+            <!-- Memory Information -->
+            
+
+        </div>
+    </main>
+{% endblock %}
+
+{% block script %} 
+<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
+{% endblock %}
