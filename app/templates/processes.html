@@ -2,6 +2,16 @@
 
 {% block head %} 
     <title> PSUTIL-DASHBOARD </title>
+    <style>
+        .nav-link {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .nav-link:hover{
+            color: #ffffff;
+            text-decoration: none;
+        }
+    </style>
 {% endblock %}
 
 {% block pagetitle %} 
@@ -29,12 +39,27 @@
 
     <!-- Main Contents -->
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-
         <div class="row"' style="padding-top: 10px;">
-
-            <!-- Memory Information -->
-            
-
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="all-processes-tab" data-bs-toggle="tab" data-bs-target="#all-processes-pane" type="button" role="tab" aria-controls="all-processes-pane" aria-selected="true">
+                        Home
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="user-processes-tab" data-bs-toggle="tab" data-bs-target="#user-processes-tab-pane" type="button" role="tab" aria-controls="user-processes-tab-pane" aria-selected="false">
+                        User
+                    </button>
+                </li>
+            </ul>
+            <div class="tab-content text-white" id="myTabContent">
+                <div class="tab-pane fade show active" id="all-processes-pane" role="tabpanel" aria-labelledby="all-processes-tab" tabindex="0">
+                    <p> All </p>
+                </div>
+                <div class="tab-pane fade" id="user-processes-tab-pane" role="tabpanel" aria-labelledby="user-processes-tab" tabindex="0">
+                    <p> User </p>
+                </div>
+            </div> 
         </div>
     </main>
 {% endblock %}
