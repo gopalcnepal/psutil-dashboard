@@ -70,6 +70,7 @@
     </li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#screenshot">Screenshot</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -133,16 +134,24 @@ This is an example of how to list things you need to use the software and how to
 ## Roadmap
 
 - [x] System Information
-- [ ] Hard Drive Information
+- [x] Hard Drive Information
 - [x] Power Information
-- [ ] Memory Information
-- [ ] Processes 
-    - [ ] System Based Processes
-    - [ ] User Based Processes
+- [x] Memory Information
+- [x] User Processes 
 
 See the [open issues](https://github.com/gopalcnepal/psutil-dashboard/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- SCREENSHOT -->
+## Screenshot
+
+[![PSUTIL Dashboard][product-screenshot]](https://github.com/gopalcnepal/psutil-dashboard)
+
+[![PSUTIL Dashboard Process Page][screenshot/psutil_dashboard_process_page.png]](https://github.com/gopalcnepal/psutil-dashboard)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 
 
