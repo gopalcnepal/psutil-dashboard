@@ -2,6 +2,7 @@
 
 {% block head %} 
     <title> PSUTIL-DASHBOARD </title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.13.1/datatables.min.css"/>
     <style>
         .nav-link {
             color: #ffffff;
@@ -10,6 +11,10 @@
         .nav-link:hover{
             color: #ffffff;
             text-decoration: none;
+        }
+        table {
+            padding-top: 10px;
+            padding-bottom: 10px;
         }
     </style>
 {% endblock %}
@@ -40,30 +45,52 @@
     <!-- Main Contents -->
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         <div class="row"' style="padding-top: 10px;">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="all-processes-tab" data-bs-toggle="tab" data-bs-target="#all-processes-pane" type="button" role="tab" aria-controls="all-processes-pane" aria-selected="true">
-                        Home
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="user-processes-tab" data-bs-toggle="tab" data-bs-target="#user-processes-tab-pane" type="button" role="tab" aria-controls="user-processes-tab-pane" aria-selected="false">
-                        User
-                    </button>
-                </li>
-            </ul>
-            <div class="tab-content text-white" id="myTabContent">
-                <div class="tab-pane fade show active" id="all-processes-pane" role="tabpanel" aria-labelledby="all-processes-tab" tabindex="0">
-                    <p> All </p>
-                </div>
-                <div class="tab-pane fade" id="user-processes-tab-pane" role="tabpanel" aria-labelledby="user-processes-tab" tabindex="0">
-                    <p> User </p>
-                </div>
-            </div> 
+            <div class="table-responsive text-muted" style="padding-top: 25px;">
+                <table id="all-processes-table" class="table table-dark table-hover">
+                    <thead>
+                        <tr class="text-muted">
+                            <th class="text-white">PID</th>
+                            <th>Name</th>
+                            <th>User</th>
+                            <th>Status</th>
+                            <th>Created</th>
+                            <th>Memory (%)</th>
+                            <th>CPU (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for processes in context.process_list.values() %}
+                        <tr class="text-muted">
+                            <td class="text-white">{{processes.pid}}</td>
+                            <td>{{processes.name}}</td>
+                            <td>{{processes.username}}</td>
+                            <td>{{processes.status}}</td>
+                            <td>{{processes.create_time.strftime('%d-%m-%y %H:%M:%S')}}</td>
+                            {% if processes.memory_percent != None %}
+                            <td>{{processes.memory_percent|round(1)}}</td>
+                            <td>{{processes.cpu_percent|round(1)}}</td>
+                            {% else %}
+                            <td>{{processes.memory_percent}}</td>
+                            <td>{{processes.cpu_percent}}</td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </main>
 {% endblock %}
 
 {% block script %} 
-<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#all-processes-table').DataTable({
+            order: [[5, 'desc']],
+        });
+    });
+</script>
 {% endblock %}

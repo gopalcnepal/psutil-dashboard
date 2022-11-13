@@ -1,6 +1,7 @@
 from app import app
 from flask import render_template, url_for
 from .systeminfo import *
+from .processinfo import get_process_list
 
 @app.route('/')
 def index():
@@ -19,5 +20,6 @@ def index():
 def processes():
     context = {
         'platform_info': get_platform_info(),
+        'process_list': get_process_list(),
     }
     return render_template("processes.html", context=context)
