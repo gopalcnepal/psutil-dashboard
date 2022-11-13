@@ -146,9 +146,9 @@ See the [open issues](https://github.com/gopalcnepal/psutil-dashboard/issues) fo
 <!-- SCREENSHOT -->
 ## Screenshot
 
-[![PSUTIL Dashboard][product-screenshot]](https://github.com/gopalcnepal/psutil-dashboard)
+![PSUTIL Dashboard Page](screenshot/psutil_dashboard.png)
 
-[![PSUTIL Dashboard Process Page][screenshot/psutil_dashboard_process_page.png]](https://github.com/gopalcnepal/psutil-dashboard)
+![PSUTIL Dashboard Process Page](screenshot/psutil_dashboard_process_page.png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
