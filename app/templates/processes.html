@@ -60,10 +60,13 @@
                             <td>{{processes.create_time.strftime('%d-%m-%y %H:%M:%S')}}</td>
                             {% if processes.memory_percent != None %}
                             <td>{{processes.memory_percent|round(1)}}</td>
-                            <td>{{processes.cpu_percent|round(1)}}</td>
                             {% else %}
                             <td>{{processes.memory_percent}}</td>
-                            <td>{{processes.cpu_percent}}</td>
+                            {% endif %}
+                            {% if context.process_data.cpu_percent != None %}
+                            <td>{{context.process_data.cpu_percent|round(1)}}</td>
+                            {% else %}
+                            <td>{{context.process_data.cpu_percent}}</td>
                             {% endif %}
                         </tr>
                         {% endfor %}
