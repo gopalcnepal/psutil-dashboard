@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block head %} 
+    <title> PSUTIL-DASHBOARD </title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.13.1/datatables.min.css"/>
+    <style>
+        .nav-link {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .nav-link:hover{
+            color: #ffffff;
+            text-decoration: none;
+        }
+        table {
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+    </style>
+{% endblock %}
+
+{% block pagetitle %} 
+<div class="text-center w-100">
+    {% if context.process_data != None %} 
+    <h3 class="text-white h3"> {{ context.process_data['name'] }} ( {{ context.process_data['pid'] }} )</h3> 
+    {% endif %}
+    <p class="text-small text-muted">
+
+        {% if context.platform_info['os_name'] != 'unknown' %}
+            <i class="fa-brands fa-{{context.platform_info['os_name']}}"></i>
+        {% else %}
+            <i class="fa-brands fa-question"></i>
+        {% endif %}
+
+        Hostname: {{ context.platform_info['node_name'] }},
+        OS: {% if context.platform_info['os_name'] == 'apple' %} macOS {% else %} {{ context.platform_info['os_name']|title }} {% endif %},
+        System: {{ context.platform_info['system_name'] }} v{{ context.platform_info['release_version'] }},
+        Architecture: {{ context.platform_info['architecture'] }} {{ context.platform_info['processor_type'] }},
+        Up Time: {{ context.platform_info['boot_time'] }}
+    </p>
+</div>
+
+{% endblock %}
+
+{% block body %}
+
+    <!-- Main Contents -->
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="row"' style="padding-top: 10px;">
+            <div class="table-responsive text-muted" style="padding-top: 25px;">
+                {% if context.process_data != None %} 
+                <table class="table table-dark table-hover">
+                    <tbody>
+                        <tr class="text-muted">
+                            <td class="text-white">Name</td>
+                            <td>{{context.process_data.name}}</td>
+                        </tr>
+                        <tr class="text-muted">
+                            <td class="text-white">PID</td>
+                            <td>{{context.process_data.pid}}</td>
+                        </tr>
+                        <tr class="text-muted">
+                            <td class="text-white">Username</td>
+                            <td>{{context.process_data.username}}</td>
+                        </tr>
+                        <tr class="text-muted">
+                            <td class="text-white">Status</td>
+                            <td>{{context.process_data.status}}</td>
+                        </tr>
+                        <tr class="text-muted">
+                            <td class="text-white">Created Time</td>
+                            <td>{{context.process_data['create_time'].strftime('%d-%m-%y %H:%M:%S')}}</td>
+                        </tr>
+                        <tr class="text-muted">
+                            <td class="text-white">Memory (%)</td>
+                            {% if context.process_data.memory_percent != None %}
+                            <td>{{context.process_data.memory_percent|round(1)}}</td>
+                            {% else %}
+                            <td>{{context.process_data.memory_percent}}</td>
+                            {% endif %}
+                        </tr>
+                        <tr class="text-muted">
+                            <td class="text-white">CPU (%)</td>
+                            {% if context.process_data.cpu_percent != None %}
+                            <td>{{context.process_data.cpu_percent|round(1)}}</td>
+                            {% else %}
+                            <td>{{context.process_data.cpu_percent}}</td>
+                            {% endif %}
+                        </tr>
+                        <tr class="text-muted">
+                            <td class="text-white">Application</td>
+                            <td>{{context.process_data.exe}}</td>
+                        </tr>
+                        <tr class="text-muted">
+                            <td class="text-white">Threads</td>
+                            <td>{{context.process_data.num_threads}}</td>
+                        </tr>
+                        <tr class="text-muted">
+                            <td class="text-white">Memory Info</td>
+                            <td>
+                                <table class="table table-dark text-muted">
+                                    <tr>
+                                        <td>RSS</td>
+                                        <td>{{context.process_data.memory_rss}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>VMS</td>
+                                        <td>{{context.process_data.memory_vms}}</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-white">CPU Times (sec)</td>
+                            <td>
+                                <table class="table table-dark text-muted">
+                                    <tr>
+                                        <td>User</td>
+                                        <td>{{context.process_data.cpu_times.0}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>System</td>
+                                        <td>{{context.process_data.cpu_times.1}}</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                {% else %}
+                    <p class="text-white lead text-center"> 
+                        Process Does not Exists! <br>
+                        <a href="{{ url_for('processes') }}" class="nav-link text-primary">
+                            Go Back to Process Lists
+                        </a>
+                    </p>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+{% block script %} 
+
+{% endblock %}

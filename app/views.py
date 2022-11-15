@@ -1,7 +1,7 @@
 from app import app
 from flask import render_template, url_for
 from .systeminfo import *
-from .processinfo import get_process_list
+from .processinfo import get_process_list, get_process_details
 
 @app.route('/')
 def index():
@@ -23,3 +23,15 @@ def processes():
         'process_list': get_process_list(),
     }
     return render_template("processes.html", context=context)
+
+@app.route('/processes/<int:process_id>')
+def process_details(process_id=None):
+    if process_id != None:
+        context = {
+        'platform_info': get_platform_info(),
+        'process_data': get_process_details(process_id),
+
+        }
+        return render_template("process_details.html", context=context) 
+    else:
+        return "<h1> Error with Process ID </h1>"
