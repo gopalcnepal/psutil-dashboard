@@ -150,6 +150,8 @@ See the [open issues](https://github.com/gopalcnepal/psutil-dashboard/issues) fo
 
 ![PSUTIL Dashboard Process Page](screenshot/psutil_dashboard_process_page.png)
 
+![PSUTIL Dashboard Process Details](screenshot/psutil_dashboard_process_detail_page.png)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
