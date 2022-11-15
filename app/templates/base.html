@@ -34,7 +34,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ url_for('processes') }}" class="nav-link text-white {% if request.path == '/processes' %} active {% endif %}">
+                                <a href="{{ url_for('processes') }}" class="nav-link text-white {% if request.path.split('/')[1] == 'processes' %} active {% endif %}">
                                     <i class="fa-solid fa-microchip"></i>
                                     Processes
                                 </a>

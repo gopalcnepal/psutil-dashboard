@@ -4,14 +4,6 @@
     <title> PSUTIL-DASHBOARD </title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.13.1/datatables.min.css"/>
     <style>
-        .nav-link {
-            color: #ffffff;
-            text-decoration: none;
-        }
-        .nav-link:hover{
-            color: #ffffff;
-            text-decoration: none;
-        }
         table {
             padding-top: 10px;
             padding-bottom: 10px;
@@ -61,7 +53,7 @@
                     <tbody>
                         {% for processes in context.process_list.values() %}
                         <tr class="text-muted">
-                            <td class="text-white">{{processes.pid}}</td>
+                            <td class="text-white"><a href="{{ url_for('processes') }}/{{processes.pid}}">{{processes.pid}}</a></td>
                             <td>{{processes.name}}</td>
                             <td>{{processes.username}}</td>
                             <td>{{processes.status}}</td>
